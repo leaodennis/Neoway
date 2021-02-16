@@ -15,5 +15,7 @@ global.R, ui.R e server.R : Estruturas do dashboard Interativo em Framework Shin
 O arquivo docker disponível integra os três arquivos e disponibiliza o Dashboard Shiny após seu Build pelos commandos na porta "5000":
 
 sudo docker build -t shiny .
+
+
 sudo docker run --rm shiny
 
