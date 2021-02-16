@@ -148,7 +148,7 @@ def encode_features(over=True):
         x_test = pd.get_dummies(x_test)
 
     x_train, x_valid, y_train, y_valid = train_test_split(
-        x_train, y_train, test_size=0.2, random_state=247)
+        x_train, y_train, test_size=0.2)
 
     return x_train, x_valid, y_train, y_valid, x_test
 

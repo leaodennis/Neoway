@@ -1,13 +1,13 @@
 shinyServer(function(input, output, session) {
-    # observe({
-    #     if (input$model_doc == "doc") {
-    #         shinyjs::show("layout_doc")
-    #         shinyjs::hide("layout_model")
-    #     } else {
-    #         shinyjs::show("layout_model")
-    #         shinyjs::hide("layout_doc")
-    #     }
-    # })
+    observe({
+        if (input$doc_model == "doc") {
+            shinyjs::show("layout_doc")
+            shinyjs::hide("layout_model")
+        } else {
+            shinyjs::hide("layout_doc")
+            shinyjs::show("layout_model")
+        }
+    })
 
     output$confusion_matrix <- renderPrint({
         caret::confusionMatrix(table(validation$pred, validation$truth))
@@ -15,7 +15,6 @@ shinyServer(function(input, output, session) {
 
     output$curve_roc  <- renderPlot({
         
-        # Use ROCR package to plot ROC Curve
         xgb.pred <- prediction(validation$pred, validation$truth)
         xgb.perf <- performance(xgb.pred, "tpr", "fpr")
 
@@ -50,8 +49,4 @@ shinyServer(function(input, output, session) {
             write.csv(teste, file)
         }
     )
-
-     output$doc <- renderUI({
-        HTML(markdown::markdownToHTML(knitr::knit("DOC.Rmd", quiet = TRUE), fragment.only = TRUE))
-    })
 })
