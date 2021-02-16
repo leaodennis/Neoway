@@ -17,5 +17,5 @@ O arquivo docker disponível integra os três arquivos e disponibiliza o Dashboa
 sudo docker build -t shiny .
 
 
-sudo docker run --rm shiny
+sudo docker run -p 5000:5000 --rm shiny
 
